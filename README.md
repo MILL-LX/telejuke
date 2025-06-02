@@ -34,6 +34,13 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ## Application Setup
 
+### Add OS Dependencies
+
+```bash
+sudo apt update
+sudo apt install ffmpeg
+```
+
 ### Clone this project
 
 ```bash
