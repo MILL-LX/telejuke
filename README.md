@@ -38,7 +38,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ```bash
 sudo apt update
-sudo apt install ffmpeg
+sudo apt install ffmpeg libasound2-dev
 ```
 
 ### Clone this project
