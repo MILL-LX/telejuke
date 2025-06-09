@@ -38,7 +38,10 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ```bash
 sudo apt update
-sudo apt install ffmpeg libasound2-dev
+sudo apt install ffmpeg libffi-dev
+sudo apt install libportaudio2 libportaudiocpp0 portaudio19-dev
+sudo apt update
+sudo apt install python3-dev python3-pip python3-venv gfortran libopenblas-dev liblapack-dev build-essential meson ninja-build
 ```
 
 ### Clone this project

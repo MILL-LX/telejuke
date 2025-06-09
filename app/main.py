@@ -1,26 +1,38 @@
-import subprocess
-import os
+from pydub import AudioSegment
+import sounddevice as sd
+import numpy as np
 
-mp3_file = "example.mp3"
-wav_file = "temp.wav"
-device = "hw:1,0"
+for idx, device in enumerate(sd.query_devices()):
+    print(f"{idx}: {device['name']}")
 
-# Convert MP3 to WAV (44100 Hz, stereo, 16-bit LE)
-subprocess.run([
-    "ffmpeg", "-y", "-i", mp3_file,
-    "-ar", "44100",     # Sample rate
-    "-ac", "2",         # Stereo
-    "-sample_fmt", "s16",  # 16-bit PCM
-    wav_file
-], check=True)
+# Load MP3 and convert to 44100 Hz stereo
+audio = AudioSegment.from_mp3("example.mp3").set_frame_rate(44100).set_channels(2)
 
-# Play using ALSA on USB audio device
-try:
-    subprocess.run([
-        "aplay", "-D", device, wav_file
-    ], check=True)
-except subprocess.CalledProcessError as e:
-    print(f"Playback failed: {e}")
+# Convert to NumPy float32 array
+samples = np.array(audio.get_array_of_samples()).astype(np.float32) / (2**15)
 
-# Optional: Clean up temporary WAV file
-os.remove(wav_file)
+# Reshape for stereo playback if necessary
+samples = samples.reshape((-1, 2))
+
+# Play on the Raspberry Pi's built-in audio output
+# Lower sound quality - use for voice playback
+device = sd.query_devices("bcm2835 Headphones", "output")
+if device is None:
+    raise ValueError("bcm2835 Headphones not found")
+if device['max_output_channels'] < 2:
+    raise ValueError("bcm2835 Headphones does not support stereo output")
+print(f"Playing on bcm2835 Headphones: {device['name']}")
+sd.play(samples, samplerate=44100, device=device['name'])
+sd.wait()
+
+
+# Play on the USB Audio Device
+# Better sound quality - use for music playback
+device = sd.query_devices("USB Audio Device", "output")
+if device is None:
+    raise ValueError("USB Audio Device not found")
+if device['max_output_channels'] < 2:
+    raise ValueError("USB Audio Device does not support stereo output")
+print(f"Playing on USB Audio Device: {device['name']}")
+sd.play(samples, samplerate=44100, device=device['name'])
+sd.wait()
