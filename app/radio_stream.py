@@ -59,6 +59,13 @@ from pyradios import RadioBrowser
 
 rb = RadioBrowser()
 results = rb.search(countrycode="FR", limit=1000)
+# Filtering out stations with no votes
+results = [s for s in results if s.get('votes', 0) > 0]
+results.sort(key=lambda x: x.get('votes', 0), reverse=True)
+# limit to top 20 stations
+results = results[:20]
+
+#results = rb.search(name="RTL2",name_exact=False, limit=1000)
 
 # print(results)
 

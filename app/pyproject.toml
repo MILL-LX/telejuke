@@ -5,6 +5,7 @@ description = "Telephone World Jukebox"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "lgpio>=0.2.2.0",
     "numpy<2.0",
     "pydub>=0.25.1",
     "pyradios>=2.1.1",
