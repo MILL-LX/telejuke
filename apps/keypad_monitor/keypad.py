@@ -1,7 +1,7 @@
 import lgpio
 import time
 
-import devices.dtmf as dtmf
+import dtmf
 
 # BCM GPIO pin numbers for rows and columns
 ROW_PINS = [16, 6, 13, 19]

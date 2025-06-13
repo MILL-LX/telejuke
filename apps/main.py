@@ -6,7 +6,7 @@ for idx, device in enumerate(sd.query_devices()):
     print(f"{idx}: {device['name']}")
 
 # Load MP3 and convert to 44100 Hz stereo
-audio = AudioSegment.from_mp3("example.mp3").set_frame_rate(44100).set_channels(2)
+audio = AudioSegment.from_mp3("../assets/instructions.mp3").set_frame_rate(44100).set_channels(2)
 
 # Convert to NumPy float32 array
 samples = np.array(audio.get_array_of_samples()).astype(np.float32) / (2**15)

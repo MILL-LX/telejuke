@@ -1,4 +1,4 @@
-import devices.keypad as keypad
+import keypad
 
 def monitor_keypad():
     """
