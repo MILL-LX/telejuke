@@ -1,7 +1,7 @@
 import lgpio
 import time
 
-from dtmf import play_dtmf_sequence
+import devices.dtmf as dtmf
 
 # BCM GPIO pin numbers for rows and columns
 ROW_PINS = [16, 6, 13, 19]
@@ -17,7 +17,13 @@ KEY_MAP = [
 # BCM GPIO pin for off hook switch
 OFF_HOOK_PIN = 12
 
-def setup_pins(h):
+global h
+def setup():
+    global h
+    h = lgpio.gpiochip_open(0)  # Open GPIO chip 0
+    if h < 0:
+        raise RuntimeError("Failed to open GPIO chip")
+    
     # Set rows as outputs, columns as inputs with pull-downs
     for row in ROW_PINS:
         lgpio.gpio_claim_output(h, row, 0)
@@ -27,12 +33,20 @@ def setup_pins(h):
     # Set off hook pin as input with pull-up
     lgpio.gpio_claim_input(h, OFF_HOOK_PIN, lgpio.SET_PULL_UP)
 
-def is_off_hook(h):
+    dtmf.init_digit_tones()
+
+def cleanup():
+    global h
+    if h is not None:
+        lgpio.gpiochip_close(h)
+        h = None
+
+def is_off_hook():
     off_hook = 1 == lgpio.gpio_read(h, OFF_HOOK_PIN)
     return off_hook
 
-def getButton(h):
-    while is_off_hook(h):
+def get_button():
+    while is_off_hook():
         for i, row in enumerate(ROW_PINS):
             # Set current row high, others low
             for r in ROW_PINS:
@@ -44,23 +58,11 @@ def getButton(h):
                     # time.sleep(0.01)
                     if lgpio.gpio_read(h, col):
                         button = KEY_MAP[i][j]
-                        play_dtmf_sequence(button, tone_duration=0.1, pause_duration=0.005)
+                        dtmf.play_digit(button)  # Play DTMF tone
 
                         while lgpio.gpio_read(h, col):
-                            time.sleep(0.01)
+                            time.sleep(0.1)
+                            
+                        dtmf.stop_playing_digit()
                         return button
     return None
-     
-
-if __name__ == "__main__":
-    h = lgpio.gpiochip_open(0)
-    setup_pins(h)
-    try:
-        while True:
-            if button := getButton(h):
-                print(f"Button pressed: {button}")
-
-    except KeyboardInterrupt:
-        pass
-    finally:
-        lgpio.gpiochip_close(h)

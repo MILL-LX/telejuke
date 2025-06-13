@@ -26,12 +26,19 @@ def generate_dtmf_tone(digit, duration=0.5, sample_rate=44100):
     
     return dtmf_tone
 
-def play_dtmf_sequence(sequence, tone_duration=0.2, pause_duration=0.1):
-    for digit in sequence:
-        if digit == ' ':
-            time.sleep(pause_duration * 3)  # Longer pause for spaces
-        else:
-            tone = generate_dtmf_tone(digit, tone_duration)
-            sd.play(tone, samplerate=44100)
-            sd.wait()  # Wait for tone to finish
-            time.sleep(pause_duration)
+digit_tones = {}
+def init_digit_tones():
+    global digit_tones
+    for digit in "1234567890*#":
+        digit_tones[str(digit)] = generate_dtmf_tone(str(digit), duration=30)
+
+def play_digit(digit):
+    tone = digit_tones.get(str(digit))
+    if tone is not None:
+        sd.play(tone, samplerate=44100)
+    else:
+        print(f"No pre-generated tone for digit {digit}")
+
+def stop_playing_digit():
+    sd.stop()
+
