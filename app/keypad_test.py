@@ -41,10 +41,10 @@ def getButton(h):
             for j, col in enumerate(COLUMN_PINS):
                 if lgpio.gpio_read(h, col):
                     # Debounce
-                    time.sleep(0.1)
+                    # time.sleep(0.01)
                     if lgpio.gpio_read(h, col):
                         button = KEY_MAP[i][j]
-                        play_dtmf_sequence(button, tone_duration=0.25, pause_duration=0.05)
+                        play_dtmf_sequence(button, tone_duration=0.1, pause_duration=0.005)
 
                         while lgpio.gpio_read(h, col):
                             time.sleep(0.01)
