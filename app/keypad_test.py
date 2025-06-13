@@ -1,6 +1,8 @@
 import lgpio
 import time
 
+from dtmf import play_dtmf_sequence
+
 # BCM GPIO pin numbers for rows and columns
 ROW_PINS = [16, 6, 13, 19]
 COLUMN_PINS = [26, 20, 21]
@@ -42,6 +44,7 @@ def getButton(h):
                     time.sleep(0.1)
                     if lgpio.gpio_read(h, col):
                         button = KEY_MAP[i][j]
+                        play_dtmf_sequence(button, tone_duration=0.25, pause_duration=0.05)
 
                         while lgpio.gpio_read(h, col):
                             time.sleep(0.01)
