@@ -42,6 +42,8 @@ Enable SPI with raspi-config
 ```bash
 sudo apt install cmake
 sudo raspi-config
+sudo apt update
+sudo apt install libraspberrypi-dev
 ```
 
 ```bash
