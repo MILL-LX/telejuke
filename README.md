@@ -47,7 +47,6 @@ sudo apt install libraspberrypi-dev
 ```
 
 ```bash
-cd ~/Desktop
 git clone https://github.com/MILL-LX/LCD-show.git
 cd LCD-show
 sudo ./LCD4-show
