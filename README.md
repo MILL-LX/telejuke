@@ -5,7 +5,9 @@ Telephone World Jukebox
 
 Use the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to create the OS image for your Pi.
 
-This project has been developed on a Raspberry Pi 4 running *Bullseye Lite 32-bit* with SSH enabled and a public key installed. Installing the public key will make your life easier if you like to use the VSCode Remote SSH plugin to develop directly on the Pi.
+This project has been developed on a Raspberry Pi 4 running *Bullseye Desktop 32-bit* with SSH enabled.
+
+Drop your public SSH key in ```~/.ssh/authorized_keys``` if you like. Installing the public key will make your life easier if you like to use the VSCode Remote SSH plugin to develop directly on the Pi.
 
 ### System Packages for Python Development
 
@@ -34,7 +36,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ## Application Setup
 
-### Add OS Dependencies
+### Add OS Dependencies - REVISIT BASED ON ACTUAL PYTHON LIBRARIES USED
+
 
 ```bash
 sudo apt update
