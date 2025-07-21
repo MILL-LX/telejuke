@@ -35,6 +35,12 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 ## Touch Screen Setup
 
+Enable SPI with raspi-config
+
+```bash
+sudo raspi-config
+```
+
 ```bash
 cd ~/Desktop
 git clone https://github.com/MILL-LX/LCD-show.git
