@@ -33,6 +33,14 @@ sudo nmtui
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
+## Touch Screen Setup
+
+```bash
+cd ~/Desktop
+git clone https://github.com/MILL-LX/LCD-show.git
+cd LCD-show
+sudo ./LCD4-show
+```
 
 ## Application Setup
 
