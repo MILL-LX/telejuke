@@ -17,7 +17,9 @@ sudo apt full-upgrade
 sudo apt install \
     git \
     python3 \
-    python3-pip 
+    python3-pip
+sudo apt autoremove
+sudo apt autoclean
 ```
 
 ### Add WiFi Networks 
