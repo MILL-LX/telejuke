@@ -38,6 +38,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 Enable SPI with raspi-config
 
 ```bash
+sudo apt install cmake
 sudo raspi-config
 ```
 
