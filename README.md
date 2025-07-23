@@ -29,6 +29,8 @@ git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
 cd Raspberry-Pi-Installer-Scripts
 ```
 
+Add arm_64bit=0 to /boot/firmware/config.txt
+
 ### Add WiFi Networks 
 
 If this will join networks besides the one configured when creatind the SD Card, you can add them with the Text UI for the Network Manager.
