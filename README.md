@@ -17,9 +17,12 @@ sudo apt full-upgrade
 sudo apt install \
     git \
     python3 \
-    python3-pip
+    python3-pip \
+    python3-venv
 sudo apt autoremove
 sudo apt autoclean
+
+python -m venv env --system-site-packages
 ```
 
 ### Add WiFi Networks 
