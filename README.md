@@ -19,17 +19,24 @@ sudo apt install \
     python3 \
     python3-pip \
     python3-venv
-sudo apt autoremove
-sudo apt autoclean
 
 python -m venv env --system-site-packages
+```
 
+Ensure that we are using the 32-bit kernel:
+
+Add `arm_64bit=0` to `/boot/firmware/config.txt`
+
+```bash
+source env/bin/activate
 pip3 install --upgrade adafruit-python-shell click
 git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
 cd Raspberry-Pi-Installer-Scripts
+
+sudo -E env PATH=$PATH python3 adafruit-pitft.py --display=28c --rotation=90 --install-type=mirror
 ```
 
-Add arm_64bit=0 to /boot/firmware/config.txt
+
 
 ### Add WiFi Networks 
 
