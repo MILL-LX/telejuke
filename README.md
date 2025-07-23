@@ -23,6 +23,10 @@ sudo apt autoremove
 sudo apt autoclean
 
 python -m venv env --system-site-packages
+
+pip3 install --upgrade adafruit-python-shell click
+git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
+cd Raspberry-Pi-Installer-Scripts
 ```
 
 ### Add WiFi Networks 
