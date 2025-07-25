@@ -9,7 +9,7 @@ This project has been developed on a Raspberry Pi 4 running Bookwork Desktop 64-
 
 Drop your public SSH key in ```~/.ssh/authorized_keys``` if you like. Installing the public key will make your life easier if you like to use the VSCode Remote SSH plugin to develop directly on the Pi.
 
-### System Packages for Python Development
+### System Packages for Python Development and FBCP Build
 
 ```bash
 sudo apt update
@@ -19,6 +19,7 @@ sudo apt install \
     python3 \
     python3-pip \
     python3-venv \
+    libraspberrypi-dev \
     cmake
 
 python -m venv env --system-site-packages
