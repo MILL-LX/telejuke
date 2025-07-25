@@ -21,7 +21,7 @@ sudo apt install \
     python3-venv \
     libraspberrypi-dev \
     libraspberrypi0 \
-    raspi-config \
+    xserver-xorg-video-fbturbo \
     cmake
 
 python -m venv env --system-site-packages
