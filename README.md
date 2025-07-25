@@ -88,7 +88,26 @@ hdmi_mode=1
 hdmi_mode=87
 hdmi_cvt 480 320 60 6 0 0 0
 hdmi_drive=2
-display_rotate=0
+display_rotate=180
+```
+
+### Start Window Manager
+
+Add the following to `~/.bash_profile`:
+
+MOFIX: Probably want to start this as a service so as not to require logging in.
+
+```bash
+if [ "$(cat /proc/device-tree/model | cut -d ' ' -f 3)" = "5" ]; then
+    # rpi 5B configuration
+    export FRAMEBUFFER=/dev/fb1
+    startx  2> /tmp/xorg_errors
+else
+    # Non-pi5 configuration
+    export FRAMEBUFFER=/dev/fb0
+    fbcp &
+    startx  2> /tmp/xorg_errors
+fi
 ```
 
 ## Application Setup
