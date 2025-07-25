@@ -50,7 +50,7 @@ Download and install the driver:
 mkdir waveshare-install
 cd waveshare-install
 wget https://files.waveshare.com/upload/1/1e/Waveshare35a.zip
-unzip Waveshare35a.zip
+unzip waveshare35a.zip
 sudo cp Waveshare35a.dtbo /boot/overlays
 ```
 
