@@ -66,7 +66,17 @@ make -j4
 sudo install fbcp /usr/local/bin/fbcp
 ```
 
-Add the following to `/boot/firmware/config.txt`.
+Edit `/boot/firmware/config.txt`:
+
+Comment out:
+
+```bash
+# Enable DRM VC4 V3D driver
+dtoverlay=vc4-kms-v3d
+max_framebuffers=2
+```
+
+Add:
 
 ```bash
 dtparam=spi=on
