@@ -9,6 +9,14 @@ This project has been developed on a Raspberry Pi 4 running Bookwork Desktop 64-
 
 Drop your public SSH key in ```~/.ssh/authorized_keys``` if you like. Installing the public key will make your life easier if you like to use the VSCode Remote SSH plugin to develop directly on the Pi.
 
+### Autologin
+
+```bash
+sudo raspi-config nonint do_boot_behaviour B2
+sudo raspi-config nonint do_wayland W1
+sudo reboot
+```
+
 ### System Packages for Python Development and FBCP Build
 
 ```bash
