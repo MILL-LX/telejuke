@@ -55,14 +55,14 @@ sudo cp Waveshare35a.dtbo /boot/overlays
 Download, build, and install the Frame Buffer Copying Daemon
 
 ```bash
-sudo wget https://files.waveshare.com/upload/1/1e/Rpi-fbcp.zip
-sudo unzip ./Rpi-fbcp.zip
+wget https://files.waveshare.com/upload/1/1e/Rpi-fbcp.zip
+unzip ./Rpi-fbcp.zip
 cd rpi-fbcp/
-sudo rm -rf build
-sudo mkdir build
+rm -rf build
+mkdir build
 cd build
-sudo cmake ..
-sudo make -j4
+cmake ..
+make -j4
 sudo install fbcp /usr/local/bin/fbcp
 ```
 
