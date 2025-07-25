@@ -66,10 +66,19 @@ make -j4
 sudo install fbcp /usr/local/bin/fbcp
 ```
 
-Enable SPI with raspi-config
+Add the following to `/boot/firmware/config.txt`.
 
 ```bash
-sudo raspi-config
+dtparam=spi=on
+dtoverlay=waveshare35a
+hdmi_force_hotplug=1
+max_usb_current=1
+hdmi_group=2
+hdmi_mode=1
+hdmi_mode=87
+hdmi_cvt 480 320 60 6 0 0 0
+hdmi_drive=2
+display_rotate=0
 ```
 
 ## Application Setup
