@@ -115,7 +115,7 @@ if [ "$(cat /proc/device-tree/model | cut -d ' ' -f 3)" = "5" ]; then
 else
     # Non-pi5 configuration
     export FRAMEBUFFER=/dev/fb0
-    fbcp &
+    # fbcp &
     startx  2> /tmp/xorg_errors
 fi
 ```
