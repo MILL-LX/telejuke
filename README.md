@@ -5,7 +5,7 @@ Telephone World Jukebox
 
 Use the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to create the OS image for your Pi.
 
-This project has been developed on a Raspberry Pi 4 running *Bullseye Desktop 32-bit* with SSH enabled.
+This project has been developed on a Raspberry Pi 4 running Bookwork Desktop 64-bit* with SSH enabled.
 
 Drop your public SSH key in ```~/.ssh/authorized_keys``` if you like. Installing the public key will make your life easier if you like to use the VSCode Remote SSH plugin to develop directly on the Pi.
 
@@ -23,21 +23,6 @@ sudo apt install \
 python -m venv env --system-site-packages
 ```
 
-Ensure that we are using the 32-bit kernel:
-
-Add `arm_64bit=0` to `/boot/firmware/config.txt`
-
-```bash
-source env/bin/activate
-pip3 install --upgrade adafruit-python-shell click
-git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
-cd Raspberry-Pi-Installer-Scripts
-
-sudo -E env PATH=$PATH python3 adafruit-pitft.py --display=28c --rotation=90 --install-type=mirror
-```
-
-
-
 ### Add WiFi Networks 
 
 If this will join networks besides the one configured when creatind the SD Card, you can add them with the Text UI for the Network Manager.
@@ -53,19 +38,36 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 ## Touch Screen Setup
 
+Based on the [Waveshare Wiki](https://www.waveshare.com/wiki/3.5inch_RPi_LCD_(A)_Manual_Configuration#For_Raspberry_Pi_4_.26_Raspberry_Pi_5)
+
+Download and install the driver:
+
+```bash
+mkdir waveshare-install
+cd waveshare-install
+wget https://files.waveshare.com/upload/1/1e/Waveshare35a.zip
+unzip Waveshare35a.zip
+sudo cp Waveshare35a.dtbo /boot/overlays
+```
+
+Download, build, and install the Frame Buffer Copying Daemon
+
+```bash
+sudo wget https://files.waveshare.com/upload/1/1e/Rpi-fbcp.zip
+sudo unzip ./Rpi-fbcp.zip
+cd rpi-fbcp/
+sudo rm -rf build
+sudo mkdir build
+cd build
+sudo cmake ..
+sudo make -j4
+sudo install fbcp /usr/local/bin/fbcp
+```
+
 Enable SPI with raspi-config
 
 ```bash
-sudo apt install cmake
 sudo raspi-config
-sudo apt update
-sudo apt install libraspberrypi-dev
-```
-
-```bash
-git clone https://github.com/MILL-LX/LCD-show.git
-cd LCD-show
-sudo ./LCD4-show
 ```
 
 ## Application Setup
