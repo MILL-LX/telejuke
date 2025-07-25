@@ -18,7 +18,8 @@ sudo apt install \
     git \
     python3 \
     python3-pip \
-    python3-venv
+    python3-venv \
+    cmake
 
 python -m venv env --system-site-packages
 ```
