@@ -1,4 +1,1 @@
 
-[submodule "dependencies/fbcp-ili9341"]
-	path = dependencies/fbcp-ili9341
-	url = https://github.com/MILL-LX/fbcp-ili9341.git
