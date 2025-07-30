@@ -36,17 +36,13 @@ git clone https://github.com/MILL-LX/telejuke.git --recursive
 cd telejuke
 ```
 
-## Build and Install FBCP
+## Install FBCP
 
 ### Compile and install the binary
 
 ```bash
-cd dependencies/raspi2fb
-mkdir build
-cd build
-cmake ..
-make -j4
-sudo install fbcp /usr/local/bin/fbcp
+cd dependencies
+
 ```
 
 ### Start FBCP as a system service
