@@ -20,7 +20,7 @@ sudo apt install \
     python3 \
     python3-pip \
     python3-venv \
-    cmake \
+    # cmake \
     # libraspberrypi-dev \
     # libraspberrypi0 \
     # xserver-xorg-video-fbturbo \
@@ -41,10 +41,11 @@ cd telejuke
 ### Compile and install the binary
 
 ```bash
-cd dependencies/rpi-fbcp
-mkdir build && cd build
+cd dependencies/raspi2fb
+mkdir build
+cd build
 cmake ..
-make
+make -j4
 sudo install fbcp /usr/local/bin/fbcp
 ```
 
