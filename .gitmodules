@@ -1,1 +1,4 @@
 
+[submodule "dependencies/raspi2fb"]
+	path = dependencies/raspi2fb
+	url = https://github.com/MILL-LX/raspi2fb.git
