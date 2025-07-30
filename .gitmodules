@@ -1,4 +1,1 @@
 
-[submodule "dependencies/rpi-fbcp"]
-	path = dependencies/rpi-fbcp
-	url = https://github.com/MILL-LX/rpi-fbcp.git
