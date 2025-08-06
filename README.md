@@ -29,6 +29,26 @@ sudo apt install \
 python -m venv env --system-site-packages
 ```
 
+## Configure Waveshare Display as a second Wayland display
+
+### Edit /boot/firmwre/config.txt
+
+```bash
+# Enable KMS (Wayland-compatible)
+dtoverlay=vc4-kms-v3d
+
+# HDMI config for Waveshare 4-inch LCD
+dtparam=spi=on
+hdmi_force_hotplug=1
+# dtoverlay=waveshare35a
+max_usb_current=1
+hdmi_group=2
+hdmi_mode=87
+hdmi_cvt 480 320 60 6 0 0 0
+hdmi_drive=2
+display_rotate=180
+```
+
 ## Clone this project
 
 ```bash
